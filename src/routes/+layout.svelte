@@ -46,7 +46,7 @@
         overflow: auto;
     }
     .router {
-        background-color: rgb(25, 28, 28);
+        background-color: rgb(25, 40, 28);
         display: grid;
         grid-template-rows: 1fr auto;
         height: 100vh;
