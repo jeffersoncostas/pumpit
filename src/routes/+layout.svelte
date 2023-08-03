@@ -3,10 +3,23 @@
 	import { page } from "$app/stores";
     import NavItem from "$lib/components/NavItem.svelte";
 	import Navigator from "$lib/components/Navigator.svelte";
+    import { pwaInfo } from 'virtual:pwa-info'; 
+
+
+  
+  $: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : ''
+
+
     console.log($page)
 </script>
 
+<svelte:head>
+    {@html webManifest}
+</svelte:head>
 
+{#await import('$lib/components/ReloadPrompt.svelte') then { default: ReloadPrompt}}
+  <ReloadPrompt />
+{/await}
 
 <div class="router">
     <div class="screens">
@@ -29,7 +42,7 @@
 <style lang="scss">
 
     .screens {
-        padding: var(--12px);
+   
         overflow: auto;
     }
     .router {
