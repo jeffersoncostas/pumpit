@@ -1,67 +1,43 @@
-<script>
-	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
-	import { webVitals } from '$lib/vitals';
-	import Header from './Header.svelte';
-	import './styles.css';
-
-	/** @type {import('./$types').LayoutServerData} */
-	export let data;
-
-	$: if (browser && data?.analyticsId) {
-		webVitals({
-			path: $page.url.pathname,
-			params: $page.params,
-			analyticsId: data.analyticsId
-		});
-	}
+<script lang="ts">
+	import { goto } from "$app/navigation";
+	import { page } from "$app/stores";
+    import NavItem from "$lib/components/NavItem.svelte";
+	import Navigator from "$lib/components/Navigator.svelte";
+    console.log($page)
 </script>
 
-<div class="app">
-	<Header />
 
-	<main>
-		<slot />
-	</main>
 
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
+<div class="router">
+    <div class="screens">
+        <slot/>
+    </div>
+    
+        <Navigator>
+            <NavItem
+            active={$page.route.id == "/"}
+             onClick={() => goto("/")} />
+
+            <NavItem
+                iconName="list-alt"
+                active={$page.route.id == "/workouts"}
+                onClick={() => goto("/workouts")} />
+        </Navigator>
+
 </div>
 
-<style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
+<style lang="scss">
 
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
-
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
-		}
-	}
+    .screens {
+        padding: var(--12px);
+        overflow: auto;
+    }
+    .router {
+        background-color: rgb(25, 28, 28);
+        display: grid;
+        grid-template-rows: 1fr auto;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+    }
 </style>
