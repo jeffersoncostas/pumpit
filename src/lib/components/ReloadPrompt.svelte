@@ -7,7 +7,7 @@
 		updateServiceWorker,
 		offlineReady
 	} = useRegisterSW({
-        immediate: true,
+    
 		onRegistered(r) {
             r &&
                 setInterval(() => {

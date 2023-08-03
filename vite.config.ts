@@ -6,7 +6,7 @@ export default defineConfig({
 	plugins: [
 		sveltekit(),
 		SvelteKitPWA({
-			registerType: 'autoUpdate',
+			registerType: 'prompt',
 			devOptions: { enabled: true },
 			includeAssets: ['favicon.ico', 'ai.png', 'vite.svg'],
 
