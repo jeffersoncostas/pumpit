@@ -9,7 +9,7 @@
 
     export let iconName = "home"
     export let iconColor = Colors.primary[1]
-    export let size = Spacing[6]
+    export let iconSize = Spacing[6]
     export let outline = false
     export let iconHighlight = false
     export let highlight = false
@@ -52,6 +52,6 @@
     <Icon
         icon={fullIconName}
         color={iconColor}
-        width={size}
+        width={iconSize}
         style={iconStyle} />
 </Row>

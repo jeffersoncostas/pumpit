@@ -7,7 +7,7 @@ export default defineConfig({
 		sveltekit(),
 		SvelteKitPWA({
 			registerType: 'prompt',
-			devOptions: { enabled: true },
+			devOptions: { enabled: false },
 			includeAssets: ['favicon.ico', 'ai.png', 'vite.svg'],
 
 			manifest: {
